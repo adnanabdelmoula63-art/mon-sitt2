@@ -1,56 +1,60 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
-    <meta charset="UTF-8">
-    <title>لعبة الغموض</title>
-    <style>
-        body { background: #000; color: #fff; text-align: center; font-family: sans-serif; padding: 20px; }
-        #game-container { max-width: 600px; margin: auto; }
-        img, video { width: 100%; border-radius: 10px; margin: 20px 0; }
-        button { padding: 15px 30px; cursor: pointer; background: #444; color: white; border: none; border-radius: 5px; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الغموض</title>
+
+<link rel="manifest" href="manifest.json">
+
+<style>
+body{
+    background:black;
+    color:white;
+    text-align:center;
+    font-family:Arial;
+    margin:0;
+    padding:20px;
+}
+
+img{
+    max-width:90%;
+    border-radius:10px;
+}
+
+button{
+    padding:15px 30px;
+    font-size:20px;
+    margin-top:20px;
+}
+</style>
 </head>
 <body>
 
-<div id="game-container">
-    <div id="scene"></div>
-</div>
+<img id="scene" src="1.png">
+
+<br>
+
+<button onclick="nextScene()">التالي</button>
+
+<audio id="audio">
+    <source src="odio.mp4" type="audio/mp4">
+</audio>
 
 <script>
-    const sceneElement = document.getElementById('scene');
 
-    function showScene1() {
-        sceneElement.innerHTML = `
-            <img src="1.png" alt="منزل مهجور">
-            <p>"تبدو المنازل المهجورة دائماً وكأنها تخفي سراً كبيرا خلف جدرانها.."</p>
-            <button onclick="showScene2()">الاقتراب من المنزل</button>
-        `;
-    }
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js');
+}
 
-    function showScene2() {
-        sceneElement.innerHTML = `
-            <img src="2.png" alt="اقتراب من المنزل">
-            <p>بينما تقترب، تسمع صوتاً خافتاً.. بكاء طفلة متقطع.. "ساعدوني.. أنا هنا"</p>
-            <button onclick="showScene3()">دخول المنزل</button>
-        `;
-    }
+function nextScene() {
 
-    function showScene3() {
-        sceneElement.innerHTML = `
-            <video controls autoplay loop muted>
-                <source src="odio.mp4" type="video/mp4">
-            </video>
-            <p>الطفلة: "لقد تأخرت كثيراً.. هل جئت لتنقذني؟"</p>
-        `;
-    }
+    document.getElementById("scene").src = "2.png";
 
-    showScene1();
+    document.getElementById("audio").play();
+}
+
 </script>
+
 </body>
 </html>
-<link rel="manifest" href="manifest.json">
-<script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('sw.js');
-  }
-</script>
