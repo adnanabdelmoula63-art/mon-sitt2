@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>لعبة الغموض</title>
+    <style>
+        body { background: #000; color: #fff; text-align: center; font-family: sans-serif; padding: 20px; }
+        #game-container { max-width: 600px; margin: auto; }
+        img, video { width: 100%; border-radius: 10px; margin: 20px 0; }
+        button { padding: 15px 30px; font-size: 16px; cursor: pointer; background: #444; color: white; border: none; border-radius: 5px; }
+    </style>
+</head>
+<body>
+
+<div id="game-container">
+    <div id="scene">
+        </div>
+</div>
+
+<script>
+    const sceneElement = document.getElementById('scene');
+
+    function showScene1() {
+        sceneElement.innerHTML = `
+            <img src="1.PNG" alt="منزل مهجور">
+            <p>"تبدو المنازل المهجورة دائماً وكأنها تخفي سراً خلف جدرانها.."</p>
+            <button onclick="showScene2()">الاقتراب من المنزل</button>
+        `;
+    }
+
+    function showScene2() {
+        sceneElement.innerHTML = `
+            <img src="2.PNG" alt="اقتراب من المنزل">
+            <p>بينما تقترب، تسمع صوتاً خافتاً.. بكاء طفلة متقطع.. "ساعدوني.. أنا هنا"</p>
+            <button onclick="showScene3()">دخول المنزل</button>
+        `;
+    }
+
+    function showScene3() {
+        sceneElement.innerHTML = `
+            <video controls autoplay loop muted>
+                <source src="3.mp4" type="video/mp4">
+            </video>
+            <p>الطفلة: "لقد تأخرت كثيراً.. هل جئت لتنقذني أم لتنضم إلينا؟"</p>
+        `;
+    }
+
+    // بدء اللعبة
+    showScene1();
+</script>
+</body>
+</html>
