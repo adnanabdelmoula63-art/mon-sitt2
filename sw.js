@@ -1,23 +1,24 @@
-const CACHE_NAME = 'game-cache-v1';
+const CACHE_NAME = "mystery-v1";
 
-self.addEventListener('install', (e) => {
-  e.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll([
-        '/mon-sitt2/',
-        '/mon-sitt2/index.html',
-        '/mon-sitt2/1.png',
-        '/mon-sitt2/2.png',
-        '/mon-sitt2/odio.mp4'
-      ]);
-    })
-  );
+self.addEventListener("install", event => {
+  event.waitUntil(
+    caches.open(CACHE_NAME).then(cache => {
+      return cache.addAll([
+        "./",
+        "./index.html",
+        "./1.png",
+        "./2.png",
+        "./odio.mp4",
+        "./manifest.json"
+      ]);
+    })
+  );
 });
 
-self.addEventListener('fetch', (e) => {
-  e.respondWith(
-    caches.match(e.request).then((response) => {
-      return response || fetch(e.request);
-    })
-  );
+self.addEventListener("fetch", event => {
+  event.respondWith(
+    caches.match(event.request).then(response => {
+      return response || fetch(event.request);
+    })
+  );
 });
